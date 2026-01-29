@@ -498,6 +498,52 @@
         <div class="dock-item" title="Burp Suite" onclick="openTerminalCommand('burpsuite')">
             <i class="fas fa-bug"></i>
         </div>
+        <div class="dock-separator"></div>
+        <div class="dock-item" title="KaliBot AI" onclick="openWindow('kalibot')">
+            <i class="fas fa-robot" style="color: #00ffcc;"></i>
+        </div>
+    </div>
+
+    <!-- KaliBot AI Window -->
+    <div class="window" id="window-kalibot"
+        style="display: none; top: 100px; left: 600px; width: 400px; height: 500px; border: 1px solid #00ffcc; box-shadow: 0 0 20px rgba(0, 255, 204, 0.2);">
+        <div class="window-header" style="background: rgba(0, 40, 40, 0.9);">
+            <span class="window-title" style="color: #00ffcc; text-shadow: 0 0 5px #00ffcc;">🤖 SYSTEM AI</span>
+            <div class="window-controls">
+                <span class="control minimize" onclick="minimizeWindow('kalibot')">_</span>
+                <span class="control close" onclick="closeWindow('kalibot')">X</span>
+            </div>
+        </div>
+        <div class="window-content"
+            style="background: rgba(0, 10, 10, 0.95); display: flex; flex-direction: column; padding: 0;">
+            <!-- AI Visualizer Area -->
+            <div
+                style="height: 150px; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid #005555; position: relative; overflow: hidden;">
+                <div class="ai-core">
+                    <div class="ai-circle"></div>
+                    <div class="ai-circle-inner"></div>
+                </div>
+                <div
+                    style="position: absolute; bottom: 5px; right: 10px; font-size: 10px; color: #00ffcc; font-family: monospace;">
+                    STATUS: ONLINE</div>
+            </div>
+
+            <!-- Chat Area -->
+            <div id="ai-chat-output"
+                style="flex: 1; padding: 15px; overflow-y: auto; font-family: 'Fira Code', monospace; font-size: 0.9em; color: #ccffff;">
+                <div style="margin-bottom: 10px; color: #00ffcc;">[SYSTEM]: Initializing Neural Interface...</div>
+                <div style="margin-bottom: 10px; color: #00ffcc;">[SYSTEM]: Welcome, User. I am KaliBot. How can I
+                    assist your operations?</div>
+            </div>
+
+            <!-- Input Area -->
+            <div style="padding: 10px; background: rgba(0, 20, 20, 0.8); border-top: 1px solid #005555; display: flex;">
+                <span style="color: #00ffcc; margin-right: 10px;">></span>
+                <input type="text" id="ai-input" placeholder="Enter command or query..."
+                    style="flex: 1; background: transparent; border: none; color: white; font-family: 'Fira Code', monospace; outline: none;"
+                    onkeydown="handleAIInput(event)">
+            </div>
+        </div>
     </div>
 
     <!-- Live Threat Map Window -->
