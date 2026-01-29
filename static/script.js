@@ -332,6 +332,28 @@ function openTerminalCommand(cmd) {
             addToTerminal("Initializing Wireshark... [GUI Mock]");
         } else if (cmd === 'autopsy') {
             addToTerminal("Starting Autopsy Forensic Browser...");
+        } else if (cmd === 'theharvester') {
+            addToTerminalHTML(`<pre style="color: #0f0;">
+  _   _          _   _                                _            
+ | |_| |__   ___| | | | __ _ _ ____   _____  ___| |_ ___ _ __ 
+ | __| '_ \\ / _ \\ |_| |/ _\` | '__\\ \\ / / _ \\/ __| __/ _ \\ '__|
+ | |_| | | |  __/  _  | (_| | |   \\ V /  __/\\__ \\ ||  __/ |   
+  \\__|_| |_|\\___|_| |_|\\__,_|_|    \\_/ \\___||___/\\__\\___|_|   
+            </pre>`);
+            addToTerminal("theHarvester - E-mail, subdomain and people harvesting tool\n[+] Searching sources: baidu, bing, google, linkedin...");
+        } else if (cmd === 'maltego') {
+            addToTerminal("Starting Maltego Community Edition... [GUI Mock]");
+        } else if (cmd === 'openvas') {
+            addToTerminal("OpenVAS Security Scanner... Connecting to Feed Server... Done.");
+        } else if (cmd === 'zaproxy') {
+            addToTerminal("OWASP ZAP (Zed Attack Proxy) starting... [GUI Mock]");
+        } else if (cmd === 'ettercap') {
+            addToTerminalHTML(`<pre>
+            ettercap 0.8.3.1 copyright 2001-2020 ALoR & NaGA
+            </pre>`);
+            addToTerminal("Listening on interface eth0...");
+        } else if (cmd === 'binwalk') {
+            addToTerminal("Binwalk v2.3.3\nDecimal       Hexadecimal     Description\n--------------------------------------------------------------------------------\n0             0x0             ELF, 32-bit LSB executable, MIPS, MIPS32 rel2 version 1 (SYSV)");
         } else {
             addToTerminal(`[MOCK] Starting ${cmd}...`);
         }
