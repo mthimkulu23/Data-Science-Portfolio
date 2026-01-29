@@ -126,6 +126,7 @@
             <span class="window-title">Resume.pdf - Document Viewer</span>
             <div class="window-controls">
                 <span class="control minimize" onclick="minimizeWindow('resume')">_</span>
+                <span class="control maximize" onclick="toggleMaximize('resume')">□</span>
                 <span class="control close" onclick="closeWindow('resume')">X</span>
             </div>
         </div>
@@ -246,6 +247,108 @@
             </ul>
         </div>
     </div>
+    </div>
+
+    <!-- App Grid Overlay -->
+    <div class="app-grid-overlay" id="app-grid">
+        <input type="text" class="app-grid-search" placeholder="Type to search...">
+
+        <div class="app-grid-container">
+            <!-- 01 - Information Gathering -->
+            <div class="app-category">
+                <div class="category-title">01 - Information Gathering</div>
+                <div class="app-list">
+                    <div class="app-icon-item" onclick="openTerminalCommand('nmap -h')">
+                        <i class="fas fa-network-wired"></i>
+                        <span>Nmap</span>
+                    </div>
+                    <div class="app-icon-item" onclick="openTerminalCommand('recon-ng')">
+                        <i class="fas fa-satellite-dish"></i>
+                        <span>Recon-ng</span>
+                    </div>
+                    <div class="app-icon-item" onclick="openTerminalCommand('whois google.com')">
+                        <i class="fas fa-id-card"></i>
+                        <span>whois</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 02 - Vulnerability Analysis -->
+            <div class="app-category">
+                <div class="category-title">02 - Vulnerability Analysis</div>
+                <div class="app-list">
+                    <div class="app-icon-item" onclick="openTerminalCommand('nikto -h')">
+                        <i class="fas fa-bug"></i>
+                        <span>Nikto</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 03 - Web Application Analysis -->
+            <div class="app-category">
+                <div class="category-title">03 - Web App Analysis</div>
+                <div class="app-list">
+                    <div class="app-icon-item" onclick="openTerminalCommand('burpsuite')">
+                        <i class="fas fa-cookie-bite"></i>
+                        <span>Burp Suite</span>
+                    </div>
+                    <div class="app-icon-item" onclick="openTerminalCommand('sqlmap -h')">
+                        <i class="fas fa-database"></i>
+                        <span>sqlmap</span>
+                    </div>
+                    <div class="app-icon-item" onclick="openTerminalCommand('commix')">
+                        <i class="fas fa-terminal"></i>
+                        <span>Commix</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 09 - Sniffing & Spoofing -->
+            <div class="app-category">
+                <div class="category-title">09 - Sniffing & Spoofing</div>
+                <div class="app-list">
+                    <div class="app-icon-item" onclick="openTerminalCommand('wireshark')">
+                        <i class="fas fa-wave-square"></i>
+                        <span>Wireshark</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 13 - Forensics -->
+            <div class="app-category">
+                <div class="category-title">13 - Forensics</div>
+                <div class="app-list">
+                    <div class="app-icon-item" onclick="openTerminalCommand('autopsy')">
+                        <i class="fas fa-search-plus"></i>
+                        <span>Autopsy</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Dock -->
+    <div class="bottom-dock">
+        <div class="dock-item" title="Show Applications" onclick="toggleAppGrid()">
+            <i class="fas fa-th"></i>
+        </div>
+        <div class="dock-separator"></div>
+        <div class="dock-item" title="Terminal" onclick="openWindow('terminal')">
+            <i class="fas fa-terminal"></i>
+        </div>
+        <div class="dock-item" title="Projects" onclick="openWindow('projects')">
+            <i class="fas fa-folder-open"></i>
+        </div>
+        <div class="dock-item" title="Firefox (Tor)" onclick="alert('Tor Browser Coming Soon!')">
+            <i class="fab fa-firefox-browser" style="color: #e66000;"></i>
+        </div>
+        <div class="dock-separator"></div>
+        <div class="dock-item" title="Metasploit" onclick="openTerminalCommand('msfconsole')">
+            <i class="fas fa-bomb"></i>
+        </div>
+        <div class="dock-item" title="Burp Suite" onclick="openTerminalCommand('burpsuite')">
+            <i class="fas fa-bug"></i>
+        </div>
     </div>
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>

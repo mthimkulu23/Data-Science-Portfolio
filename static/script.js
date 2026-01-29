@@ -262,3 +262,81 @@ function addToTerminalHTML(html) {
     div.innerHTML = html;
     terminalOutput.appendChild(div);
 }
+
+// --- App Grid Logic ---
+function toggleAppGrid() {
+    const grid = document.getElementById('app-grid');
+    if (grid.style.display === 'flex') {
+        grid.classList.remove('active');
+        setTimeout(() => { grid.style.display = 'none'; }, 300);
+    } else {
+        grid.style.display = 'flex';
+        // forced reflow
+        void grid.offsetWidth;
+        grid.classList.add('active');
+    }
+}
+
+// Close grid when clicking outside
+const gridEl = document.getElementById('app-grid');
+if (gridEl) {
+    gridEl.addEventListener('click', (e) => {
+        if (e.target === gridEl) {
+            toggleAppGrid();
+        }
+    });
+}
+
+function openTerminalCommand(cmd) {
+    const grid = document.getElementById('app-grid');
+    if (grid && grid.style.display === 'flex') {
+        toggleAppGrid(); // Close grid
+    }
+    openWindow('terminal');
+
+    // Simulate typing or running the command
+    setTimeout(() => {
+        const cmdLine = document.createElement('div');
+        cmdLine.innerHTML = `${getPromptHTML()} <span style="color: white;">${cmd}</span>`;
+        terminalOutput.appendChild(cmdLine);
+
+        // Mock responses for security tools
+        if (cmd === 'msfconsole') {
+            addToTerminalHTML(`
+            <pre style="color: #d70; font-weight: bold;">
+ ____________
+< metasploit >
+ ------------
+       \\   ,__,
+        \\  (oo)____
+           (__)    )\\
+              ||--|| *
+            </pre>
+            `);
+            addToTerminal("Metasploit Framework Console... Starting...");
+        } else if (cmd === 'nmap -h') {
+            addToTerminal("Nmap 7.94 ( https://nmap.org )\nUsage: nmap [Scan Type(s)] [Options] {target specification}");
+        } else if (cmd.startsWith('whois')) {
+            addToTerminal(`Domain Name: ${cmd.split(' ')[1].toUpperCase()}\nRegistry Domain ID: ...\n[MOCKED WHOIS DATA]`);
+        } else if (cmd === 'burpsuite') {
+            addToTerminal("Starting Burp Suite Community Edition...\n[JAVA] Loading Process...\n(Mock: Burp GUI would open here)");
+        } else if (cmd === 'sqlmap -h') {
+            addToTerminal("        ___n__n__\n(_____|__________|\n      |__________|\n\nsqlmap - automatic SQL injection and database takeover tool");
+        } else if (cmd === 'commix') {
+            addToTerminal("Commix - Automated All-in-One OS Command Injection and Exploitation Tool");
+        } else if (cmd === 'nikto -h') {
+            addToTerminal("Nikto - Web Server Scanner\nUsage: nikto [options] -h [hostname]");
+        } else if (cmd === 'recon-ng') {
+            addToTerminal("[recon-ng][default] > ");
+        } else if (cmd === 'wireshark') {
+            addToTerminal("Initializing Wireshark... [GUI Mock]");
+        } else if (cmd === 'autopsy') {
+            addToTerminal("Starting Autopsy Forensic Browser...");
+        } else {
+            addToTerminal(`[MOCK] Starting ${cmd}...`);
+        }
+
+        terminalOutput.scrollTop = terminalOutput.scrollHeight;
+
+    }, 500);
+}
