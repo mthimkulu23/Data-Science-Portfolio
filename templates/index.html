@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Science Portfolio - Kali Style</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Roboto:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Top Taskbar -->
+    <div class="top-bar">
+        <div class="left-menu">
+            <span class="kali-logo"><i class="fa-brands fa-linux"></i></span>
+            <span class="menu-item">Applications</span>
+            <span class="menu-item">Places</span>
+        </div>
+        <div class="right-menu">
+            <span id="clock" class="menu-item">12:00 PM</span>
+            <span class="menu-item"><i class="fas fa-volume-up"></i></span>
+            <span class="menu-item"><i class="fas fa-network-wired"></i></span>
+            <span class="menu-item"><i class="fas fa-power-off"></i></span>
+        </div>
+    </div>
+
+    <!-- Desktop Area -->
+    <div class="desktop" id="desktop">
+
+        <!-- Desktop Icons -->
+        <div class="desktop-icon" onclick="openWindow('terminal')">
+            <i class="fas fa-terminal icon-img"></i>
+            <span class="icon-label">Terminal</span>
+        </div>
+
+        <div class="desktop-icon" onclick="openWindow('projects')">
+            <i class="fas fa-folder-open icon-img"></i>
+            <span class="icon-label">Projects</span>
+        </div>
+
+        <div class="desktop-icon" onclick="openWindow('resume')">
+            <i class="fas fa-file-pdf icon-img"></i>
+            <span class="icon-label">Resume.pdf</span>
+        </div>
+
+        <div class="desktop-icon" onclick="openGithub()">
+            <i class="fab fa-github icon-img"></i>
+            <span class="icon-label">GitHub</span>
+        </div>
+
+        <div class="desktop-icon" onclick="openLinkedin()">
+            <i class="fab fa-linkedin icon-img"></i>
+            <span class="icon-label">LinkedIn</span>
+        </div>
+
+    </div>
+
+    <!-- Windows Container -->
+    <div id="window-area">
+        <!-- Terminal Window Template -->
+        <div class="window" id="window-terminal" style="display: none; top: 100px; left: 100px;">
+            <div class="window-header" onmousedown="startDrag(event, 'window-terminal')">
+                <span class="window-title">root@kali: ~</span>
+                <div class="window-controls">
+                    <span class="control minimize" onclick="minimizeWindow('terminal')">_</span>
+                    <span class="control maximize" onclick="toggleMaximize('terminal')">□</span>
+                    <span class="control close" onclick="closeWindow('terminal')">X</span>
+                </div>
+            </div>
+            <!-- Terminal Menu Bar -->
+            <div class="terminal-menu-bar"
+                style="background: #2d2d2d; padding: 2px 10px; font-size: 0.8em; color: #ccc; border-bottom: 1px solid #444;">
+                <span style="margin-right: 15px;">File</span>
+                <span style="margin-right: 15px;">Edit</span>
+                <span style="margin-right: 15px;">View</span>
+                <span style="margin-right: 15px;">Search</span>
+                <span style="margin-right: 15px;">Terminal</span>
+                <span>Help</span>
+            </div>
+            <div class="window-content terminal-content">
+                <div class="terminal-output" id="terminal-output">
+                    <p>Kali GNU/Linux Rolling [Version 2026.1]</p>
+                    <p>Type 'help' to see available commands.</p>
+                </div>
+                <div class="input-line">
+                    <span class="prompt-user">kali</span><span class="prompt-at">@</span><span
+                        class="prompt-host">kali</span><span class="prompt-colon">:</span><span
+                        class="prompt-path">~</span><span class="prompt-dollar">$</span>
+                    <input type="text" id="terminal-input" autocomplete="off" autofocus>
+                </div>
+            </div>
+        </div>
+
+        <!-- Projects Window Template -->
+        <div class="window" id="window-projects" style="display: none; top: 150px; left: 150px;">
+            <div class="window-header" onmousedown="startDrag(event, 'window-projects')">
+                <span class="window-title">/home/kali/projects</span>
+                <div class="window-controls">
+                    <span class="control minimize" onclick="minimizeWindow('projects')">_</span>
+                    <span class="control maximize" onclick="toggleMaximize('projects')">□</span>
+                    <span class="control close" onclick="closeWindow('projects')">X</span>
+                </div>
+            </div>
+            <div class="window-content file-manager-content">
+                <div class="file-grid">
+                    <div class="file-item">
+                        <i class="fas fa-chart-bar file-icon"></i>
+                        <span>Sales_Analysis.ipynb</span>
+                    </div>
+                    <div class="file-item">
+                        <i class="fas fa-brain file-icon"></i>
+                        <span>Neural_Net_Model.py</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Resume Window Template -->
+    <div class="window" id="window-resume" style="display: none; top: 80px; left: 300px; width: 700px; height: 500px;">
+        <div class="window-header" onmousedown="startDrag(event, 'window-resume')">
+            <span class="window-title">Resume.pdf - Document Viewer</span>
+            <div class="window-controls">
+                <span class="control minimize" onclick="minimizeWindow('resume')">_</span>
+                <span class="control close" onclick="closeWindow('resume')">X</span>
+            </div>
+        </div>
+        <div class="window-content resume-content"
+            style="background: #fff; color: #000; padding: 40px; font-family: 'Times New Roman', serif;">
+            <h1 style="text-align: center;">
+                Thabang Mthimkulu
+                <i class="fas fa-check-circle" style="color: #1DA1F2; font-size: 0.6em; vertical-align: middle;"
+                    title="Verified"></i>
+            </h1>
+            <p style="text-align: center; font-style: italic; font-size: 0.9em;">
+                Data Scientist || Data Analytics || Full Stack Developer || Cybersecurity Practitioner <br>
+                DevOps, CI/CD || IT System Support || Certified Technician Cybersecurity
+            </p>
+            <hr>
+            <h3>Summary</h3>
+            <p><strong>🔍 Aspiring Data Scientist with a Strong Cybersecurity & Development Background</strong></p>
+            <p>I am a data science enthusiast with a growing focus on leveraging data to drive actionable insights and
+                smarter decision making. With a strong foundation in cybersecurity and full-stack development, I bring a
+                unique, security-conscious perspective to data analysis and problem-solving.</p>
+            <hr>
+            <h3>Experience</h3>
+
+            <p><strong>Data Scientist</strong> <br>
+                <span style="color: #555; font-size: 0.9em;">Shaper | Oct 2025 - Present (On-site)</span>
+            </p>
+            <ul>
+                <li>Current Role. Leveraging data science techniques for business solutions.</li>
+            </ul>
+
+            <p><strong>Junior Cyber Security Support Technician</strong> <br>
+                <span style="color: #555; font-size: 0.9em;">City of Johannesburg | Oct 2024 - Oct 2025</span>
+            </p>
+            <ul>
+                <li>Applied Essential Security Principles and Network Security Concepts.</li>
+                <li>Provided IT system support and security maintenance.</li>
+            </ul>
+
+            <p><strong>Junior Software Developer (Internship)</strong> <br>
+                <span style="color: #555; font-size: 0.9em;">SpecCon Holdings (Pty) Ltd. | Aug 2025 - Sep 2025
+                    (Remote)</span>
+            </p>
+            <ul>
+                <li><strong>Role:</strong> Front-End Developer (Team Project).</li>
+                <li><strong>Tech Stack:</strong> C#, Blazor, MudBlazor, .NET Core.</li>
+                <li>Built a Business Management Platform for enterprise use.</li>
+                <li>Developed responsive UI components for an intuitive user experience.</li>
+            </ul>
+
+            <p><strong>Full-stack Developer (Internship)</strong> <br>
+                <span style="color: #555; font-size: 0.9em;">City of Johannesburg | Oct 2023 - Sep 2024</span>
+            </p>
+            <ul>
+                <li>Utilized CSS, Bootstrap, and full-stack technologies for city systems.</li>
+            </ul>
+
+            <hr>
+            <h3>Education</h3>
+
+            <p><strong>Design Thinking Practitioner</strong> <br>
+                <span style="color: #555; font-size: 0.9em;">SpecCon Holdings | Oct 2025</span>
+            </p>
+
+            <p><strong>Generic Management</strong> <br>
+                <span style="color: #555; font-size: 0.9em;">SpecCon Holdings | Oct 2024 - Sep 2025</span>
+            </p>
+
+            <p><strong>Information Technology (Systems Support)</strong> <br>
+                <span style="color: #555; font-size: 0.9em;">SpecCon Holdings | Sep 2024</span><br>
+                <span style="font-size: 0.85em;"> Networking, Cloud Computing, Virtualization, System Admin</span>
+            </p>
+
+            <p><strong>UiPath Automation Implementation Fundamentals</strong> <br>
+                <span style="color: #555; font-size: 0.9em;">UiPath Academy | Jun 2025</span>
+            </p>
+
+            <p><strong>N1 - N3, Electrical and Electronics Engineering</strong> <br>
+                <span style="color: #555; font-size: 0.9em;">Ekurhuleni East TVET College | Jan 2020</span>
+            </p>
+
+            <hr>
+            <h3>Certifications</h3>
+
+            <p><strong>Cisco</strong><br>
+                <span style="font-size: 0.9em;">CCST Cybersecurity, Ethical Hacker, Cyber Threat Mgmt, Network Defense,
+                    Endpoint Security, Python Essentials 1, Intro to Cybersecurity, Networking Basics.</span>
+            </p>
+
+            <p><strong>IBM</strong><br>
+                <span style="font-size: 0.9em;">Python for Data Science, Cybersecurity Fundamentals (Capstone
+                    Project).</span>
+            </p>
+
+            <p><strong>The Linux Foundation</strong><br>
+                <span style="font-size: 0.9em;">Developing Secure Software, Cybersecurity Essentials, Introduction to
+                    Linux.</span>
+            </p>
+
+            <p><strong>Fortinet</strong><br>
+                <span style="font-size: 0.9em;">Certified Associate Cybersecurity, FortiGate 7.6 Operator.</span>
+            </p>
+
+            <p><strong>FNB South Africa</strong><br>
+                <span style="font-size: 0.9em;">Full Stack App Development Academy (2025).</span>
+            </p>
+
+            <p><strong>Other Notable Certs</strong></p>
+            <ul style="font-size: 0.9em;">
+                <li>Data Analytics for Climate & Health (Ashoka Univ.)</li>
+                <li>Foundations of Log Analysis (Red Team Leaders)</li>
+                <li>Machine Learning with Python (freeCodeCamp)</li>
+                <li>Programming in C# (TestDome)</li>
+                <li>AI Security & Governance (Securiti)</li>
+                <li>Android Bug Bounty Hunting (EC-Council)</li>
+                <li>Threat Intelligence Analyst (arcX)</li>
+                <li>Intro to Penetration Testing (Security Blue Team)</li>
+                <li>SIEM 101, Lab Builder (LetsDefend)</li>
+            </ul>
+        </div>
+    </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+        function openGithub() {
+            window.open('https://github.com/mthimkulu23', '_blank');
+        }
+        function openLinkedin() {
+            window.open('https://www.linkedin.com/in/thabang-mthimkulu-b27316241/', '_blank');
+        }
+    </script>
+</body>
+
+</html>

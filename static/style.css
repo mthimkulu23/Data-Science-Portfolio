@@ -1,0 +1,285 @@
+:root {
+    --bg-color: #1a1a1a;
+    --panel-bg: #2d2d2d;
+    --text-color: #e0e0e0;
+    --accent-color: #3b71ca;
+    --terminal-bg: #101010;
+    /* Darker black for terminal */
+    --terminal-text: #f0f0f0;
+    /* White text by default */
+    --cmd-cyan: #00ffff;
+    --prompt-red: #ff4444;
+    --prompt-blue: #5555ff;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--bg-color);
+    background-image: url('https://www.kali.org/images/kali-dragon-icon.svg');
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: var(--text-color);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--panel-bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 4px;
+}
+
+/* Top Bar */
+.top-bar {
+    height: 28px;
+    background-color: #111;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    font-size: 14px;
+    z-index: 1000;
+}
+
+.left-menu,
+.right-menu {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.menu-item {
+    cursor: pointer;
+    opacity: 0.9;
+}
+
+.menu-item:hover {
+    opacity: 1;
+    color: #fff;
+}
+
+.kali-logo {
+    color: var(--accent-color);
+    font-size: 16px;
+    margin-right: 5px;
+}
+
+/* Desktop Icons */
+.desktop {
+    position: absolute;
+    top: 28px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 20px;
+}
+
+.desktop-icon {
+    width: 80px;
+    height: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.2s;
+    text-align: center;
+}
+
+.desktop-icon:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.icon-img {
+    font-size: 40px;
+    margin-bottom: 5px;
+    color: #eee;
+}
+
+.icon-label {
+    font-size: 12px;
+    text-shadow: 1px 1px 2px black;
+    color: white;
+}
+
+/* Windows */
+.window {
+    position: absolute;
+    width: 600px;
+    height: 400px;
+    background-color: var(--panel-bg);
+    border: 1px solid #444;
+    border-radius: 6px 6px 0 0;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+    resize: both;
+    overflow: hidden;
+}
+
+.window-header {
+    height: 30px;
+    background-color: #333;
+    border-bottom: 1px solid #444;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    cursor: grab;
+    user-select: none;
+}
+
+.window-header:active {
+    cursor: grabbing;
+}
+
+.window-title {
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.window-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.control {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.control:hover {
+    color: white;
+}
+
+.close:hover {
+    color: #ff5555;
+}
+
+.window-content {
+    flex: 1;
+    padding: 10px;
+    overflow: auto;
+    position: relative;
+}
+
+/* Terminal Specifics */
+.terminal-content {
+    background-color: var(--terminal-bg);
+    color: var(--terminal-text);
+    font-family: 'Fira Code', monospace;
+    font-size: 14px;
+    padding: 10px;
+}
+
+.input-line {
+    display: flex;
+    margin-top: 5px;
+}
+
+#terminal-input {
+    background: transparent;
+    border: none;
+    color: var(--terminal-text);
+    font-family: 'Fira Code', monospace;
+    font-size: 14px;
+    flex: 1;
+    outline: none;
+}
+
+/* Terminal New Styles */
+.prompt-user {
+    color: var(--prompt-red);
+    font-weight: bold;
+}
+
+.prompt-at {
+    color: white;
+}
+
+.prompt-host {
+    color: var(--prompt-red);
+    font-weight: bold;
+}
+
+.prompt-colon {
+    color: white;
+}
+
+.prompt-path {
+    color: var(--prompt-blue);
+    font-weight: bold;
+}
+
+.prompt-dollar {
+    color: white;
+}
+
+.cmd-help-table {
+    display: table;
+    margin-top: 5px;
+}
+
+.cmd-row {
+    display: table-row;
+}
+
+.cmd-cell-cmd {
+    display: table-cell;
+    color: var(--cmd-cyan);
+    padding-right: 20px;
+    font-weight: bold;
+}
+
+.cmd-cell-desc {
+    display: table-cell;
+    color: white;
+}
+
+/* File Manager */
+.file-manager-content {
+    background-color: #222;
+}
+
+.file-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 15px;
+}
+
+.file-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.file-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.file-icon {
+    font-size: 40px;
+    margin-bottom: 5px;
+    color: #aaa;
+}
