@@ -130,8 +130,7 @@
                 <span class="control close" onclick="closeWindow('resume')">X</span>
             </div>
         </div>
-        <div class="window-content resume-content"
-            style="background: #fff; color: #000; padding: 40px; font-family: 'Times New Roman', serif;">
+        <div class="window-content resume-content">
             <h1 style="text-align: center;">
                 Thabang Mthimkulu
                 <i class="fas fa-check-circle" style="color: #1DA1F2; font-size: 0.6em; vertical-align: middle;"
@@ -249,6 +248,63 @@
     </div>
     </div>
 
+    <!-- Tor Browser Window Template -->
+    <div class="window" id="window-tor"
+        style="display: none; top: 50px; left: 50px; width: 800px; height: 600px; border: 1px solid #5a5a5a;">
+        <div class="window-header" style="background: #3c3c3c;">
+            <span class="window-title" style="color: #ddd;">Tor Browser</span>
+            <div class="window-controls">
+                <span class="control minimize" onclick="minimizeWindow('tor')">_</span>
+                <span class="control maximize" onclick="toggleMaximize('tor')">□</span>
+                <span class="control close" onclick="closeWindow('tor')">X</span>
+            </div>
+        </div>
+        <!-- Tor Toolbar -->
+        <div
+            style="background: #444; padding: 10px; display: flex; align-items: center; gap: 10px; border-bottom: 2px solid #7d4698;">
+            <i class="fas fa-arrow-left" style="color: #aaa; cursor: pointer;"></i>
+            <i class="fas fa-arrow-right" style="color: #aaa; cursor: pointer;"></i>
+            <i class="fas fa-redo" style="color: #aaa; cursor: pointer;"></i>
+            <div
+                style="flex: 1; background: #222; padding: 5px 10px; border-radius: 20px; display: flex; align-items: center; color: #fff; font-size: 0.9em;">
+                <i class="fas fa-lock" style="color: #7d4698; margin-right: 8px;"></i>
+                <span style="flex: 1;">http://thabang_portfolio.onion</span>
+                <i class="fas fa-shield-alt" style="margin-left: 8px; color: #ccc;"></i>
+            </div>
+            <i class="fas fa-bars" style="color: #aaa; cursor: pointer;"></i>
+        </div>
+        <!-- Tor Content -->
+        <div class="window-content" style="background: #2b2b2b; color: #d1d1d1; padding: 0;">
+            <div style="background: #38245c; color: white; padding: 40px; text-align: center;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Tor-logo-2011-flat.svg/1024px-Tor-logo-2011-flat.svg.png"
+                    style="width: 80px; margin-bottom: 20px;">
+                <h2>Welcome to Tor Browser</h2>
+                <p>You are now exploring freely and privately.</p>
+            </div>
+            <div style="padding: 30px;">
+                <h3 style="color: #a47ac4;">Hidden Services (Portfolio Projects)</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li
+                        style="background: #333; margin: 10px 0; padding: 15px; border-left: 5px solid #7d4698; cursor: pointer;">
+                        <strong>🕵️‍♀️ Advanced Threat Intel Platform</strong><br>
+                        <span style="font-size: 0.9em; color: #aaa;">Machine Learning based C2 detection system.</span>
+                    </li>
+                    <li
+                        style="background: #333; margin: 10px 0; padding: 15px; border-left: 5px solid #7d4698; cursor: pointer;">
+                        <strong>🔐 Zero-Knowledge Proof Auth</strong><br>
+                        <span style="font-size: 0.9em; color: #aaa;">Cryptographic authentication system POC.</span>
+                    </li>
+                    <li
+                        style="background: #333; margin: 10px 0; padding: 15px; border-left: 5px solid #7d4698; cursor: pointer;">
+                        <strong>🕸️ Dark Web Scraper</strong><br>
+                        <span style="font-size: 0.9em; color: #aaa;">Python bot for monitoring leaked
+                            credentials.</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
     <!-- App Grid Overlay -->
     <div class="app-grid-overlay" id="app-grid">
         <input type="text" class="app-grid-search" placeholder="Type to search...">
@@ -339,7 +395,7 @@
         <div class="dock-item" title="Projects" onclick="openWindow('projects')">
             <i class="fas fa-folder-open"></i>
         </div>
-        <div class="dock-item" title="Firefox (Tor)" onclick="alert('Tor Browser Coming Soon!')">
+        <div class="dock-item" title="Firefox (Tor)" onclick="openWindow('tor')">
             <i class="fab fa-firefox-browser" style="color: #e66000;"></i>
         </div>
         <div class="dock-separator"></div>

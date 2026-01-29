@@ -41,6 +41,37 @@ body {
     border-radius: 4px;
 }
 
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-color);
+}
+
+/* Resume Content Styles */
+.resume-content {
+    background: #fff;
+    color: #000;
+    padding: 40px;
+    font-family: 'Times New Roman', serif;
+    line-height: 1.6;
+}
+
+.resume-content h1,
+.resume-content h3 {
+    cursor: default;
+}
+
+.resume-content p,
+.resume-content li {
+    padding: 2px 5px;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.resume-content p:hover,
+.resume-content li:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-left: 3px solid var(--accent-color);
+}
+
 /* Top Bar */
 .top-bar {
     height: 28px;
