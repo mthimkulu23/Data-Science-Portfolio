@@ -506,6 +506,8 @@ function processAICommand(cmd) {
             response = "Email: thabang23mthimkulu@gmail.com<br>Phone: 060 764 7642";
         } else if (lower.includes('hello') || lower === 'hi' || lower.startsWith('hi ')) {
             response = "Greetings. I am KaliBot v1.0, ready to assist.";
+        } else if (lower.includes('how are you')) {
+            response = "I am operating at peak efficiency. All systems functional.";
         } else if (lower.includes('status')) {
             response = "System Integrity: STABLE.<br>Network: SECURE.";
         } else {
