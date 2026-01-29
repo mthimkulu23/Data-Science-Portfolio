@@ -225,6 +225,18 @@ WORK EXPERIENCE:
             addToTerminal(`
 Directory: /home/kali
   projects/
+    passguard.py
+    phishing_detector/
+    hulahula_ohs/
+    task_mgmt/
+    chatbot_ai/
+    ai_resume/
+    siem_pro/
+  labs/
+    soc_lab_setup.md
+    siem_lab.md
+    forensics_crime.case
+    tryhackme_notes.txt
   experience.txt
   education.txt
   skills.txt

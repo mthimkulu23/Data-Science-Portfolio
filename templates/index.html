@@ -21,6 +21,9 @@
             <span class="menu-item">Places</span>
         </div>
         <div class="right-menu">
+            <span class="menu-item" style="color: #00ff00; font-family: 'Fira Code', monospace; font-size: 0.9em;">
+                <i class="fas fa-network-wired"></i> tun0: 10.10.14.8
+            </span>
             <span id="clock" class="menu-item">12:00 PM</span>
             <span class="menu-item"><i class="fas fa-volume-up"></i></span>
             <span class="menu-item"><i class="fas fa-network-wired"></i></span>
@@ -105,15 +108,81 @@
                     <span class="control close" onclick="closeWindow('projects')">X</span>
                 </div>
             </div>
-            <div class="window-content file-manager-content">
+            <div class="window-content file-manager-content" style="padding: 20px;">
+                <h4 style="color: #aaa; border-bottom: 1px solid #444; margin-bottom: 15px;">Development Projects</h4>
                 <div class="file-grid">
-                    <div class="file-item">
-                        <i class="fas fa-chart-bar file-icon"></i>
-                        <span>Sales_Analysis.ipynb</span>
+                    <div class="file-item" onclick="window.open('https://password-stregnth.onrender.com/', '_blank')">
+                        <i class="fas fa-key file-icon" style="color: #e6c07b;"></i>
+                        <span>PassGuard</span>
                     </div>
-                    <div class="file-item">
-                        <i class="fas fa-brain file-icon"></i>
-                        <span>Neural_Net_Model.py</span>
+                    <div class="file-item"
+                        onclick="window.open('https://github.com/mthimkulu23/Phishing-Email-Detector', '_blank')">
+                        <i class="fas fa-fish file-icon" style="color: #e06c75;"></i>
+                        <span>Phishing Detector</span>
+                    </div>
+                    <div class="file-item" onclick="window.open('https://www.hulahulaohs.co.za/', '_blank')">
+                        <i class="fas fa-hard-hat file-icon" style="color: #98c379;"></i>
+                        <span>Hulahula OHS</span>
+                    </div>
+                    <div class="file-item"
+                        onclick="window.open('https://github.com/mthimkulu23/Task-management23', '_blank')">
+                        <i class="fas fa-tasks file-icon" style="color: #61afef;"></i>
+                        <span>Task Mgmt</span>
+                    </div>
+                    <div class="file-item"
+                        onclick="window.open('https://github.com/mthimkulu23/-Project-Structure-LocalConnect-AI', '_blank')">
+                        <i class="fas fa-robot file-icon" style="color: #c678dd;"></i>
+                        <span>Chatbot AI</span>
+                    </div>
+                    <div class="file-item"
+                        onclick="window.open('https://ai-powered-resume-job-description-6gxf.onrender.com/', '_blank')">
+                        <i class="fas fa-file-alt file-icon" style="color: #56b6c2;"></i>
+                        <span>AI Resume</span>
+                    </div>
+                    <div class="file-item" title="No Link Available">
+                        <i class="fas fa-file-signature file-icon" style="color: #abb2bf;"></i>
+                        <span>Resume Builder</span>
+                    </div>
+                    <div class="file-item" title="No Link Available">
+                        <i class="fas fa-shield-alt file-icon" style="color: #d19a66;"></i>
+                        <span>SIEM Pro</span>
+                    </div>
+                    <div class="file-item" title="No Link Available">
+                        <i class="fas fa-bell file-icon" style="color: #be5046;"></i>
+                        <span>Alertness Sys</span>
+                    </div>
+                </div>
+
+                <h4 style="color: #aaa; border-bottom: 1px solid #444; margin: 25px 0 15px;">Labs & Challenges</h4>
+                <div class="file-grid">
+                    <div class="file-item"
+                        onclick="window.open('https://app.letsdefend.io/my-rewards/detail/8507c7aa10c64c11a5a12b01e647d055', '_blank')">
+                        <i class="fas fa-flask file-icon" style="color: #98c379;"></i>
+                        <span>SOC Lab</span>
+                    </div>
+                    <div class="file-item"
+                        onclick="window.open('https://app.letsdefend.io/my-rewards/detail/89f4096330e1495ebe8bca2d11834c2c', '_blank')">
+                        <i class="fas fa-server file-icon" style="color: #61afef;"></i>
+                        <span>SIEM Lab</span>
+                    </div>
+                    <div class="file-item"
+                        onclick="window.open('https://cyberdefenders.org/blueteam-ctf-challenges/the-crime/', '_blank')">
+                        <i class="fas fa-search file-icon" style="color: #e06c75;"></i>
+                        <span>Crime Forensics</span>
+                    </div>
+                    <div class="file-item"
+                        onclick="window.open('https://tryhackme.com/room/whatisnetworking', '_blank')">
+                        <i class="fas fa-network-wired file-icon" style="color: #e6c07b;"></i>
+                        <span>Networking</span>
+                    </div>
+                    <div class="file-item"
+                        onclick="window.open('https://tryhackme.com/room/linuxfundamentalspart1', '_blank')">
+                        <i class="fab fa-linux file-icon" style="color: #c678dd;"></i>
+                        <span>Linux Fund.</span>
+                    </div>
+                    <div class="file-item" title="Hacker101 CTF">
+                        <i class="fas fa-flag file-icon" style="color: #56b6c2;"></i>
+                        <span>CTF Progress</span>
                     </div>
                 </div>
             </div>
@@ -428,6 +497,40 @@
         </div>
         <div class="dock-item" title="Burp Suite" onclick="openTerminalCommand('burpsuite')">
             <i class="fas fa-bug"></i>
+        </div>
+    </div>
+
+    <!-- Live Threat Map Window -->
+    <div class="window" id="window-threatmap"
+        style="display: none; top: 40px; left: 40px; width: 900px; height: 600px; background: #000;">
+        <div class="window-header" style="background: #111; border-bottom: 1px solid #333;">
+            <span class="window-title" style="color: #ff3333;">🚨 LIVE THREAT MAP - GLBOAL ATTACK VECTORS</span>
+            <div class="window-controls">
+                <span class="control minimize" onclick="minimizeWindow('threatmap')">_</span>
+                <span class="control maximize" onclick="toggleMaximize('threatmap')">□</span>
+                <span class="control close" onclick="closeWindow('threatmap')">X</span>
+            </div>
+        </div>
+        <div class="window-content" style="padding: 0; overflow: hidden; position: relative;">
+            <div id="threat-map-container"
+                style="width: 100%; height: 100%; background: radial-gradient(circle, #1a1a1a 0%, #000 100%);">
+                <!-- SVG World Map Background (Simplified) -->
+                <svg width="100%" height="100%" viewBox="0 0 1000 500"
+                    style="opacity: 0.3; width: 100%; height: 100%; position: absolute;">
+                    <path fill="#333" d="M150,150 L200,100 L300,120 L350,200 L250,250 Z" />
+                    <!-- Mock Continents (Abstract) -->
+                    <path fill="#333" d="M400,100 L500,50 L600,100 L550,200 L450,150 Z" />
+                    <path fill="#333" d="M650,100 L800,80 L900,150 L850,250 L700,200 Z" />
+                    <circle cx="200" cy="350" r="40" fill="#333" />
+                </svg>
+                <canvas id="attack-canvas"
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></canvas>
+                <div
+                    style="position: absolute; bottom: 20px; left: 20px; color: #0f0; font-family: monospace; font-size: 12px; background: rgba(0,0,0,0.7); padding: 10px; border: 1px solid #0f0;">
+                    LIVE LOGS:<br>
+                    <span id="threat-log">Waiting for feed...</span>
+                </div>
+            </div>
         </div>
     </div>
 
