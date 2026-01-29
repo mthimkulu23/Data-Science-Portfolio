@@ -503,8 +503,8 @@ function processAICommand(cmd) {
             openWindow('projects');
             response = "Opening Project Database...<br>Thabang has built PassGuard, Phishing Detectors, Chatbots, and SIEM Solutions.";
         } else if (lower.includes('contact') || lower.includes('email')) {
-            response = "Email: mthimkulu23@gmail.com<br>Phone: 063 859 2707";
-        } else if (lower.includes('hello')) {
+            response = "Email: thabang23mthimkulu@gmail.com<br>Phone: 060 764 7642";
+        } else if (lower.includes('hello') || lower === 'hi' || lower.startsWith('hi ')) {
             response = "Greetings. I am KaliBot v1.0, ready to assist.";
         } else if (lower.includes('status')) {
             response = "System Integrity: STABLE.<br>Network: SECURE.";
