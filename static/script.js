@@ -374,3 +374,143 @@ function openTerminalCommand(cmd) {
 
     }, 500);
 }
+
+// --- Volume & Power Logic ---
+let isMuted = false;
+function toggleVolume() {
+    const icon = document.getElementById('volume-icon');
+    if (!icon) return;
+    if (isMuted) {
+        icon.className = 'fas fa-volume-up';
+    } else {
+        icon.className = 'fas fa-volume-mute';
+    }
+    isMuted = !isMuted;
+}
+
+function showPowerMenu() {
+    const menu = document.getElementById('power-menu');
+    if (menu) menu.style.display = 'flex';
+}
+
+// --- Live Threat Map Logic ---
+let threatInterval;
+function startThreatMap() {
+    if (document.getElementById('app-grid').style.display === 'flex') {
+        toggleAppGrid();
+    }
+
+    const canvas = document.getElementById('attack-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const log = document.getElementById('threat-log');
+
+    canvas.width = canvas.parentElement.offsetWidth;
+    canvas.height = canvas.parentElement.offsetHeight;
+
+    if (threatInterval) clearInterval(threatInterval);
+
+    const attacks = [];
+
+    function createAttack() {
+        const startX = Math.random() * canvas.width;
+        const startY = Math.random() * canvas.height;
+        const endX = Math.random() * canvas.width;
+        const endY = Math.random() * canvas.height;
+        const color = Math.random() > 0.5 ? '#ff0000' : '#ffff00';
+
+        attacks.push({
+            sx: startX, sy: startY,
+            ex: endX, ey: endY,
+            progress: 0,
+            speed: 0.01 + Math.random() * 0.02,
+            color: color
+        });
+
+        const types = ['DDoS', 'SQLi', 'Brute Force', 'Malware', 'Port Scan'];
+        const type = types[Math.floor(Math.random() * types.length)];
+        const ip = `${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}`;
+        if (log) log.innerHTML = `<span style="color:${color}">[${type}]</span> ${ip} -> TARGET <br>` + log.innerHTML.substring(0, 100);
+    }
+
+    function animate() {
+        ctx.fillStyle = 'rgba(0,0,0,0.1)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.lineWidth = 2;
+
+        for (let i = 0; i < attacks.length; i++) {
+            const a = attacks[i];
+            a.progress += a.speed;
+
+            const currentX = a.sx + (a.ex - a.sx) * a.progress;
+            const currentY = a.sy + (a.ey - a.sy) * a.progress;
+
+            ctx.beginPath();
+            ctx.moveTo(a.sx, a.sy);
+            ctx.lineTo(currentX, currentY);
+            ctx.strokeStyle = a.color;
+            ctx.stroke();
+
+            if (a.progress >= 1) {
+                attacks.splice(i, 1);
+                i--;
+            }
+        }
+
+        if (Math.random() < 0.1) createAttack();
+        requestAnimationFrame(animate);
+    }
+    animate();
+}
+
+// --- KaliBot AI Logic ---
+function handleAIInput(event) {
+    if (event.key === 'Enter') {
+        const input = document.getElementById('ai-input');
+        const text = input.value.trim();
+        if (text) {
+            addAIMessage('USER', text);
+            input.value = '';
+            processAICommand(text);
+        }
+    }
+}
+
+function addAIMessage(sender, text) {
+    const output = document.getElementById('ai-chat-output');
+    if (!output) return;
+    const div = document.createElement('div');
+    div.style.marginBottom = '10px';
+    div.style.color = sender === 'USER' ? '#fff' : '#00ffcc';
+    div.innerHTML = `<strong>[${sender}]:</strong> ${text}`;
+    output.appendChild(div);
+    output.scrollTop = output.scrollHeight;
+}
+
+function processAICommand(cmd) {
+    const lower = cmd.toLowerCase();
+    let response = "I am processing your request...";
+
+    setTimeout(() => {
+        if (lower.includes('thabang') || lower.includes('bio')) {
+            response = "Thabang Mthimkulu is a multi-skilled <strong>Data Scientist and Cybersecurity Specialist</strong>. <br>He specializes in Machine Learning, Python, CI/CD, and Secure Infrastructure.";
+        } else if (lower.includes('skill') || lower.includes('stack')) {
+            response = "<strong>Skills:</strong> Python, SQL, JavaScript, Bash, Pandas, TensorFlow, Network Security, SIEM, Docker, Git.";
+        } else if (lower.includes('experience') || lower.includes('work')) {
+            response = "<strong>Experience:</strong><br>- Data Scientist (Freelance)<br>- IT Support Intern (SITA)<br>- Data Annotator (Remotasks)";
+        } else if (lower.includes('project')) {
+            openWindow('projects');
+            response = "Opening Project Database...<br>Thabang has built PassGuard, Phishing Detectors, Chatbots, and SIEM Solutions.";
+        } else if (lower.includes('contact') || lower.includes('email')) {
+            response = "Email: mthimkulu23@gmail.com<br>Phone: 063 859 2707";
+        } else if (lower.includes('hello')) {
+            response = "Greetings. I am KaliBot v1.0, ready to assist.";
+        } else if (lower.includes('status')) {
+            response = "System Integrity: STABLE.<br>Network: SECURE.";
+        } else {
+            response = "Command not recognized. Try asking about 'Thabang', 'Skills', 'Projects' or 'Contact'.";
+        }
+        addAIMessage('SYSTEM', response);
+    }, 600);
+}
